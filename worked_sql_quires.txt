@@ -66,3 +66,47 @@ JOIN Courses c ON s.student_id = c.student_id;
 SELECT name, age
 FROM Students
 WHERE age = (SELECT MAX(age) FROM Students);
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE Departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50)
+);
+
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    salary DECIMAL(10,2),
+    dept_id INT,
+    hire_date DATE,
+    FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
+);
+
+
+
+-- Departments
+INSERT INTO Departments VALUES
+(1, 'HR'),
+(2, 'Engineering'),
+(3, 'Marketing'),
+(4, 'Finance');
+
+-- Employees
+INSERT INTO Employees VALUES
+(101, 'Alice Smith', 28, 55000, 2, '2020-01-15'),
+(102, 'Bob Johnson', 35, 65000, 2, '2019-03-10'),
+(103, 'Charlie Lee', 29, 52000, 1, '2021-06-23'),
+(104, 'Daisy Kim', 42, 72000, 4, '2018-11-05'),
+(105, 'Ethan Brown', 31, 50000, 3, '2022-04-18'),
+(106, 'Fiona Davis', 26, 48000, 3, '2023-01-08');
