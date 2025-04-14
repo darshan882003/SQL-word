@@ -162,4 +162,11 @@ WHERE dept_id IN (
 );
 
 
--- Give a 5% sa
+-- Give a 5% salary hike to Marketing employees
+UPDATE Employees
+SET salary = salary * 1.05
+WHERE dept_id = (SELECT dept_id FROM Departments WHERE dept_name = 'Marketing');
+
+-- Delete employee with ID 106
+DELETE FROM Employees
+WHERE emp_id = 106;
