@@ -54,3 +54,15 @@ VALUES
 (101, 'Math', 1),
 (102, 'Science', 2),
 (103, 'History', 1);
+
+
+
+-- INNER JOIN
+SELECT s.name, c.course_name
+FROM Students s
+JOIN Courses c ON s.student_id = c.student_id;
+
+
+SELECT name, age
+FROM Students
+WHERE age = (SELECT MAX(age) FROM Students);
