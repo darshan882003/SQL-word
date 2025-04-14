@@ -36,3 +36,21 @@ SELECT grade, COUNT(*) AS count
 FROM Students
 GROUP BY grade
 HAVING COUNT(*) > 1;
+
+
+
+
+
+CREATE TABLE Courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100),
+    student_id INT,
+    FOREIGN KEY (student_id) REFERENCES Students(student_id)
+);
+
+
+INSERT INTO Courses (course_id, course_name, student_id)
+VALUES
+(101, 'Math', 1),
+(102, 'Science', 2),
+(103, 'History', 1);
