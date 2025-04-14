@@ -110,3 +110,56 @@ INSERT INTO Employees VALUES
 (104, 'Daisy Kim', 42, 72000, 4, '2018-11-05'),
 (105, 'Ethan Brown', 31, 50000, 3, '2022-04-18'),
 (106, 'Fiona Davis', 26, 48000, 3, '2023-01-08');
+
+
+-- List all employees
+SELECT * FROM Employees;
+
+-- Find employees earning more than 55000
+SELECT name, salary FROM Employees
+WHERE salary > 55000;
+
+-- Get employee names hired after 2020
+SELECT name FROM Employees
+WHERE hire_date > '2020-01-01';
+
+-- Show average salary per department
+SELECT dept_id, AVG(salary) AS avg_salary
+FROM Employees
+GROUP BY dept_id;
+
+-- Count of employees per department
+SELECT d.dept_name, COUNT(e.emp_id) AS total_employees
+FROM Departments d
+LEFT JOIN Employees e ON d.dept_id = e.dept_id
+GROUP BY d.dept_name;
+
+
+
+-- List employees with their department names
+SELECT e.name, d.dept_name
+FROM Employees e
+JOIN Departments d ON e.dept_id = d.dept_id;
+
+-- Employees who work in 'Marketing'
+SELECT e.name
+FROM Employees e
+JOIN Departments d ON e.dept_id = d.dept_id
+WHERE d.dept_name = 'Marketing';
+
+
+
+-- Employees earning more than the average salary
+SELECT name, salary FROM Employees
+WHERE salary > (SELECT AVG(salary) FROM Employees);
+
+-- Departments with more than 1 employee
+SELECT dept_name FROM Departments
+WHERE dept_id IN (
+    SELECT dept_id FROM Employees
+    GROUP BY dept_id
+    HAVING COUNT(*) > 1
+);
+
+
+-- Give a 5% sa
